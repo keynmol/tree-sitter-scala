@@ -56,6 +56,8 @@ module.exports = grammar({
   conflicts: $ => [
     [$.tuple_type, $.parameter_types],
     [$.binding, $.expression],
+    [$.if_expression],
+    [$.match_expression]
   ],
 
   word: $ => $.identifier,
@@ -277,6 +279,7 @@ module.exports = grammar({
     function_definition: $ => seq(
       repeat($.annotation),
       optional($.modifiers),
+      optional($.inline_modifier),
       'def',
       field('name', choice($.identifier, $.operator_identifier)),
       field('type_parameters', optional($.type_parameters)),
@@ -350,8 +353,11 @@ module.exports = grammar({
       optional(seq('=', field('default_value', $.expression)))
     ),
 
+    inline_modifier: $ => 'inline', 
+
     parameter: $ => seq(
       repeat($.annotation),
+      optional($.inline_modifier),
       field('name', $.identifier),
       optional(seq(':', field('type', $._param_type))),
       optional(seq('=', field('default_value', $.expression)))
@@ -557,6 +563,7 @@ module.exports = grammar({
     ),
 
     if_expression: $ => prec.right(seq(
+      optional($.inline_modifier),
       'if',
       field('condition', $.parenthesized_expression),
       field('consequence', $.expression),
@@ -567,11 +574,12 @@ module.exports = grammar({
     )),
 
     match_expression: $ => seq(
+      optional($.inline_modifier),
       field('value', $.expression),
       'match',
       field('body', $.case_block)
     ),
-
+    
     try_expression: $ => prec.right(seq(
       'try',
       field('body', $.expression),

@@ -1526,6 +1526,10 @@
           "named": true
         },
         {
+          "type": "inline_modifier",
+          "named": true
+        },
+        {
           "type": "modifiers",
           "named": true
         }
@@ -1708,6 +1712,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "inline_modifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2146,6 +2160,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "inline_modifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2371,6 +2395,10 @@
       "types": [
         {
           "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "inline_modifier",
           "named": true
         }
       ]
@@ -3729,6 +3757,10 @@
   {
     "type": "import",
     "named": false
+  },
+  {
+    "type": "inline_modifier",
+    "named": true
   },
   {
     "type": "integer_literal",

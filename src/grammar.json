@@ -1318,6 +1318,18 @@
           ]
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "inline_modifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": "def"
         },
@@ -1854,6 +1866,10 @@
         }
       ]
     },
+    "inline_modifier": {
+      "type": "STRING",
+      "value": "inline"
+    },
     "parameter": {
       "type": "SEQ",
       "members": [
@@ -1863,6 +1879,18 @@
             "type": "SYMBOL",
             "name": "annotation"
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "inline_modifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "FIELD",
@@ -2870,6 +2898,18 @@
         "type": "SEQ",
         "members": [
           {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "inline_modifier"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
             "type": "STRING",
             "value": "if"
           },
@@ -2920,6 +2960,18 @@
     "match_expression": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "inline_modifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "FIELD",
           "name": "value",
@@ -4442,6 +4494,12 @@
     [
       "binding",
       "expression"
+    ],
+    [
+      "if_expression"
+    ],
+    [
+      "match_expression"
     ]
   ],
   "precedences": [],
