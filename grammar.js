@@ -535,6 +535,8 @@ module.exports = grammar({
     // Expressions
 
     expression: $ => choice(
+      $.macro_splice_expression,
+      $.macro_quote_expression,
       $.if_expression,
       $.match_expression,
       $.try_expression,
@@ -561,6 +563,16 @@ module.exports = grammar({
       $.while_expression,
       $.do_while_expression,
       $.for_expression,
+    ),
+    macro_quote_expression: $=> seq(
+      "'{",
+        $.expression,
+      "}"
+    ),
+    macro_splice_expression: $=> seq(
+      "${",
+        $.expression,
+      "}"
     ),
 
     if_expression: $ => prec.right(seq(
@@ -779,10 +791,11 @@ module.exports = grammar({
       )),
       '\''
     )),
-
+    // https://www.scala-lang.org/files/archive/spec/2.13/01-lexical-syntax.html#symbol-literals
     symbol_literal: $ => token(seq(
       "'",
-      repeat1(/[^\\'\n]/)
+      /[^\{\'\n]/,
+      /[a-zA-Z_]*/
     )),
 
     interpolated_string_expression: $ => seq(

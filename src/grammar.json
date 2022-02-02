@@ -2799,6 +2799,14 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "macro_splice_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "macro_quote_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "if_expression"
         },
         {
@@ -2900,6 +2908,40 @@
         {
           "type": "SYMBOL",
           "name": "for_expression"
+        }
+      ]
+    },
+    "macro_quote_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "'{"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "macro_splice_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "${"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
         }
       ]
     },
@@ -4027,11 +4069,12 @@
             "value": "'"
           },
           {
-            "type": "REPEAT1",
-            "content": {
-              "type": "PATTERN",
-              "value": "[^\\\\'\\n]"
-            }
+            "type": "PATTERN",
+            "value": "[^\\{\\'\\n]"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[a-zA-Z_]*"
           }
         ]
       }
