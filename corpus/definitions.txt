@@ -466,3 +466,26 @@ inline def mkLines(inline header: String, indented: Boolean = false): String = {
       (parameter (identifier) (type_identifier) (boolean_literal)))
     (type_identifier) (block)))
 
+=======================================
+Inline val definition (Scala 3)
+=======================================
+
+inline def test() = {
+  inline val x = true
+}
+
+---
+
+(compilation_unit
+  (function_definition
+    (inline_modifier)
+    (identifier)
+    (parameters)
+    (block
+     (val_definition
+      (inline_modifier)
+      (identifier)
+      (boolean_literal)
+     ) 
+    )))
+

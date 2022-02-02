@@ -231,6 +231,7 @@ module.exports = grammar({
     val_definition: $ => seq(
       repeat($.annotation),
       optional($.modifiers),
+      optional($.inline_modifier),
       'val',
       field('pattern', $._pattern),
       optional(seq(':', field('type', $._type))),
