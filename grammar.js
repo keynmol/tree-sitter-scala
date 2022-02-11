@@ -335,7 +335,7 @@ module.exports = grammar({
     // TODO: Allow only the last parameter list to be implicit.
     class_parameters: $ => prec(1, seq(
       '(',
-      optional('implicit'),
+      optional(choice('implicit', 'using')),
       commaSep($.class_parameter),
       ')'
     )),
@@ -343,7 +343,7 @@ module.exports = grammar({
     // TODO: Allow only the last parameter list to be implicit.
     parameters: $ => seq(
       '(',
-      optional('implicit'),
+      optional(choice('implicit', 'using')),
       commaSep($.parameter),
       ')'
     ),
