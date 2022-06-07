@@ -1687,6 +1687,11 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "if_expression",
     "named": true,
     "fields": {
@@ -3119,6 +3124,11 @@
     }
   },
   {
+    "type": "type_identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "type_parameters",
     "named": true,
     "fields": {
@@ -3855,10 +3865,6 @@
     "named": false
   },
   {
-    "type": "identifier",
-    "named": true
-  },
-  {
     "type": "if",
     "named": false
   },
@@ -3949,10 +3955,6 @@
   {
     "type": "type",
     "named": false
-  },
-  {
-    "type": "type_identifier",
-    "named": true
   },
   {
     "type": "using",
