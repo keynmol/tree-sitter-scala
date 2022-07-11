@@ -273,6 +273,7 @@ module.exports = grammar({
     type_definition: $ => seq(
       repeat($.annotation),
       optional($.modifiers),
+      optional($.opaque_modifier),
       'type',
       field('name', $._type_identifier),
       field('type_parameters', optional($.type_parameters)),
@@ -314,6 +315,8 @@ module.exports = grammar({
       'override',
       $.access_modifier,
     )),
+
+    opaque_modifier: $ => 'opaque',
 
     access_modifier: $ => seq(
       choice('private', 'protected'),
