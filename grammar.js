@@ -121,12 +121,12 @@ module.exports = grammar({
     _import_given_by_type: $ => seq('given', $._type),
     import_selectors: $ => seq(
       '{',
-        commaSep1(choice(
-          $._import_given_by_type,
-          $.import_wildcard,
-          $.identifier,
-          $.renamed_identifier
-        )),
+      commaSep1(choice(
+        $._import_given_by_type,
+        $.import_wildcard,
+        $.identifier,
+        $.renamed_identifier
+      )),
       '}'
     ),
 
@@ -209,7 +209,7 @@ module.exports = grammar({
 
     trait_definition: $ => seq(
       repeat($.annotation),
-       optional($.modifiers),
+      optional($.modifiers),
       'trait',
       field('name', $.identifier),
       field('type_parameters', optional($.type_parameters)),
@@ -410,7 +410,7 @@ module.exports = grammar({
       optional(seq('=', field('default_value', $.expression)))
     ),
 
-    inline_modifier: $ => 'inline', 
+    inline_modifier: $ => 'inline',
 
     parameter: $ => seq(
       repeat($.annotation),
@@ -510,7 +510,7 @@ module.exports = grammar({
     parameter_types: $ => prec(-1, choice(
       $._annotated_type,
       // Prioritize a parenthesized param list over a single tuple_type.
-      prec.dynamic(1, seq('(', commaSep($._param_type), ')' )),
+      prec.dynamic(1, seq('(', commaSep($._param_type), ')')),
       $.compound_type,
       $.infix_type,
     )),
@@ -621,14 +621,14 @@ module.exports = grammar({
       $.do_while_expression,
       $.for_expression,
     ),
-    macro_quote_expression: $=> seq(
+    macro_quote_expression: $ => seq(
       "'{",
-        $.expression,
+      $.expression,
       "}"
     ),
-    macro_splice_expression: $=> seq(
+    macro_splice_expression: $ => seq(
       "${",
-        $.expression,
+      $.expression,
       "}"
     ),
 
@@ -649,7 +649,7 @@ module.exports = grammar({
       'match',
       field('body', $.case_block)
     ),
-    
+
     try_expression: $ => prec.right(seq(
       'try',
       field('body', $.expression),
@@ -674,8 +674,8 @@ module.exports = grammar({
 
     lambda_expression: $ => prec.right(PREC.lambda, seq(
       choice(
-          $.bindings,
-          $.identifier,
+        $.bindings,
+        $.identifier,
       ),
       '=>',
       $.expression,
@@ -727,9 +727,9 @@ module.exports = grammar({
     )),
 
     ascription_expression: $ => prec.right(PREC.ascription, seq(
-        $.expression,
-        ':',
-        $._param_type,
+      $.expression,
+      ':',
+      $._param_type,
     )),
 
     infix_expression: $ => prec.left(PREC.infix, seq(
@@ -888,7 +888,7 @@ module.exports = grammar({
       )
     ),
 
-    string :$ => 
+    string: $ =>
       choice(
         $._simple_string,
         $._simple_multiline_string
