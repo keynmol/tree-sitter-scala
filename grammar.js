@@ -392,6 +392,7 @@ module.exports = grammar({
       $.compound_type,
       $.infix_type,
       $._annotated_type,
+      $.literal_type
     ),
 
     // TODO: Make this a visible type, so that _type can be a supertype.
@@ -724,11 +725,13 @@ module.exports = grammar({
 
     // TODO: Include operators.
     _plainid: $ => /[a-zA-Z_]\w*/,
-    _backquoted_id: $=> /`[^\n`]+`/,
+    _backquoted_id: $ => /`[^\n`]+`/,
     identifier: $ => choice($._plainid, $._backquoted_id),
     wildcard: $ => '_',
 
     operator_identifier: $ => /[^\s\w\(\)\[\]\{\}'"`\.;,]+/,
+
+    literal_type: $ => $.literal,
 
     literal: $ => choice(
       $.integer_literal,
