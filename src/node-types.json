@@ -8,6 +8,10 @@
         "named": true
       },
       {
+        "type": "enum_definition",
+        "named": true
+      },
+      {
         "type": "function_declaration",
         "named": true
       },
@@ -408,6 +412,10 @@
           "named": true
         },
         {
+          "type": "literal_type",
+          "named": true
+        },
+        {
           "type": "projected_type",
           "named": true
         },
@@ -496,6 +504,10 @@
           },
           {
             "type": "lazy_parameter_type",
+            "named": true
+          },
+          {
+            "type": "literal_type",
             "named": true
           },
           {
@@ -852,6 +864,10 @@
             "named": true
           },
           {
+            "type": "literal_type",
+            "named": true
+          },
+          {
             "type": "projected_type",
             "named": true
           },
@@ -1010,6 +1026,10 @@
             "named": true
           },
           {
+            "type": "literal_type",
+            "named": true
+          },
+          {
             "type": "projected_type",
             "named": true
           },
@@ -1134,6 +1154,22 @@
     }
   },
   {
+    "type": "derives_clause",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "do_while_expression",
     "named": true,
     "fields": {
@@ -1157,6 +1193,124 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "enum_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_definition",
+          "named": true
+        },
+        {
+          "type": "enum_case_definitions",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_case_definitions",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "full_enum_case",
+          "named": true
+        },
+        {
+          "type": "simple_enum_case",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_definition",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "enum_body",
+            "named": true
+          }
+        ]
+      },
+      "class_parameters": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "class_parameters",
+            "named": true
+          }
+        ]
+      },
+      "derive": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "derives_clause",
+            "named": true
+          }
+        ]
+      },
+      "extend": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "extends_clause",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_parameters",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "access_modifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1223,6 +1377,10 @@
           },
           {
             "type": "infix_type",
+            "named": true
+          },
+          {
+            "type": "literal_type",
             "named": true
           },
           {
@@ -1339,6 +1497,52 @@
     }
   },
   {
+    "type": "full_enum_case",
+    "named": true,
+    "fields": {
+      "class_parameters": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "class_parameters",
+            "named": true
+          }
+        ]
+      },
+      "extend": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "extends_clause",
+            "named": true
+          }
+        ]
+      },
+      "type_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_parameters",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "function_declaration",
     "named": true,
     "fields": {
@@ -1388,6 +1592,10 @@
           },
           {
             "type": "infix_type",
+            "named": true
+          },
+          {
+            "type": "literal_type",
             "named": true
           },
           {
@@ -1497,6 +1705,10 @@
             "named": true
           },
           {
+            "type": "literal_type",
+            "named": true
+          },
+          {
             "type": "projected_type",
             "named": true
           },
@@ -1580,6 +1792,10 @@
           },
           {
             "type": "infix_type",
+            "named": true
+          },
+          {
+            "type": "literal_type",
             "named": true
           },
           {
@@ -1805,6 +2021,10 @@
         },
         {
           "type": "infix_type",
+          "named": true
+        },
+        {
+          "type": "literal_type",
           "named": true
         },
         {
@@ -2127,6 +2347,10 @@
             "named": true
           },
           {
+            "type": "literal_type",
+            "named": true
+          },
+          {
             "type": "projected_type",
             "named": true
           },
@@ -2144,6 +2368,45 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "literal_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "character_literal",
+          "named": true
+        },
+        {
+          "type": "floating_point_literal",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "null_literal",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol_literal",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2172,6 +2435,10 @@
           },
           {
             "type": "infix_type",
+            "named": true
+          },
+          {
+            "type": "literal_type",
             "named": true
           },
           {
@@ -2455,6 +2722,10 @@
             "named": true
           },
           {
+            "type": "literal_type",
+            "named": true
+          },
+          {
             "type": "projected_type",
             "named": true
           },
@@ -2522,6 +2793,10 @@
         },
         {
           "type": "lazy_parameter_type",
+          "named": true
+        },
+        {
+          "type": "literal_type",
           "named": true
         },
         {
@@ -2712,6 +2987,10 @@
             "named": true
           },
           {
+            "type": "literal_type",
+            "named": true
+          },
+          {
             "type": "projected_type",
             "named": true
           },
@@ -2741,6 +3020,21 @@
       "types": [
         {
           "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "simple_enum_case",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -2976,6 +3270,10 @@
           "named": true
         },
         {
+          "type": "literal_type",
+          "named": true
+        },
+        {
           "type": "projected_type",
           "named": true
         },
@@ -3020,6 +3318,10 @@
         },
         {
           "type": "infix_type",
+          "named": true
+        },
+        {
+          "type": "literal_type",
           "named": true
         },
         {
@@ -3080,6 +3382,10 @@
             "named": true
           },
           {
+            "type": "literal_type",
+            "named": true
+          },
+          {
             "type": "projected_type",
             "named": true
           },
@@ -3118,6 +3424,10 @@
         },
         {
           "type": "modifiers",
+          "named": true
+        },
+        {
+          "type": "opaque_modifier",
           "named": true
         }
       ]
@@ -3237,6 +3547,10 @@
             "named": true
           },
           {
+            "type": "literal_type",
+            "named": true
+          },
+          {
             "type": "projected_type",
             "named": true
           },
@@ -3287,6 +3601,10 @@
           },
           {
             "type": "infix_type",
+            "named": true
+          },
+          {
+            "type": "literal_type",
             "named": true
           },
           {
@@ -3345,6 +3663,10 @@
           },
           {
             "type": "infix_type",
+            "named": true
+          },
+          {
+            "type": "literal_type",
             "named": true
           },
           {
@@ -3417,6 +3739,10 @@
           },
           {
             "type": "infix_type",
+            "named": true
+          },
+          {
+            "type": "literal_type",
             "named": true
           },
           {
@@ -3506,6 +3832,10 @@
             "named": true
           },
           {
+            "type": "literal_type",
+            "named": true
+          },
+          {
             "type": "projected_type",
             "named": true
           },
@@ -3578,6 +3908,10 @@
             "named": true
           },
           {
+            "type": "literal_type",
+            "named": true
+          },
+          {
             "type": "projected_type",
             "named": true
           },
@@ -3647,6 +3981,10 @@
           },
           {
             "type": "infix_type",
+            "named": true
+          },
+          {
+            "type": "literal_type",
             "named": true
           },
           {
@@ -3829,11 +4167,19 @@
     "named": false
   },
   {
+    "type": "derives",
+    "named": false
+  },
+  {
     "type": "do",
     "named": false
   },
   {
     "type": "else",
+    "named": false
+  },
+  {
+    "type": "enum",
     "named": false
   },
   {
@@ -3903,6 +4249,10 @@
   {
     "type": "object",
     "named": false
+  },
+  {
+    "type": "opaque_modifier",
+    "named": true
   },
   {
     "type": "operator_identifier",
