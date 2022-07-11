@@ -71,6 +71,7 @@ module.exports = grammar({
       $.class_definition,
       $.import_declaration,
       $.object_definition,
+      $.enum_definition,
       $.trait_definition,
       $.val_definition,
       $.val_declaration,
@@ -143,10 +144,54 @@ module.exports = grammar({
       $._object_definition
     ),
 
+    enum_definition: $ => seq(
+      'enum',
+      field('name', $.identifier),
+      field('type_parameters', optional($.type_parameters)),
+      optional($.access_modifier),
+      field('class_parameters', repeat($.class_parameters)),
+      field('extend', optional($.extends_clause)),
+      field('derive', optional($.derives_clause)),
+      field('body', $.enum_body)
+    ),
+
+    _enum_block: $ => prec.left(seq(
+      sep1($._semicolon, choice(
+        $.enum_case_definitions,
+        $.expression,
+        $._definition
+      )),
+      optional($._semicolon),
+    )),
+
+    enum_body: $ => seq(
+      '{',
+      // TODO: self type
+      optional($._enum_block),
+      '}'
+    ),
+
+    enum_case_definitions: $ => seq(
+      'case',
+      choice(
+        commaSep1($.simple_enum_case),
+        $.full_enum_case
+      )
+    ),
+    simple_enum_case: $ => $.identifier,
+
+    full_enum_case: $ => seq($.identifier, $._extended_enum_def),
+
     _object_definition: $ => seq(
       field('name', $.identifier),
       field('extend', optional($.extends_clause)),
       field('body', optional($.template_body)),
+    ),
+
+    _extended_enum_def: $ => seq(
+      field('type_parameters', optional($.type_parameters)),
+      field('class_parameters', repeat1($.class_parameters)),
+      field('extend', optional($.extends_clause))
     ),
 
     class_definition: $ => prec.right(seq(
@@ -333,6 +378,11 @@ module.exports = grammar({
       'extends',
       field('type', $._type),
       optional($.arguments)
+    ),
+
+    derives_clause: $ => seq(
+      'derives',
+      commaSep1(field('type', $._type_identifier)),
     ),
 
     // TODO: Allow only the last parameter list to be implicit.
