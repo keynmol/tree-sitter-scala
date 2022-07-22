@@ -265,10 +265,16 @@ module.exports = grammar({
 
     template_body: $ => seq(
       '{',
-      // TODO: self type
+      optional($.self_type),
       optional($._block),
       '}'
     ),
+
+    self_type: $ => prec(4, seq(
+      $.identifier, optional($._self_type_ascription), '=>'
+    )),
+
+    _self_type_ascription: $ => seq(':', $._type),
 
     annotation: $ => prec.right(seq(
       '@',
