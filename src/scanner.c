@@ -14,6 +14,9 @@ enum TokenType {
   FINALLY,
   EXTENDS,
   WITH,
+  END,
+  INDENT,
+  OUTDENT
 };
 
 void *tree_sitter_scala_external_scanner_create() { return NULL; }
