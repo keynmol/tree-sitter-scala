@@ -37,6 +37,8 @@ module.exports = grammar({
     $._interpolated_string_end,
     $._interpolated_multiline_string_middle,
     $._interpolated_multiline_string_end,
+    $._indent,
+    $._outdent,
     'else',
     'catch',
     'finally',
@@ -164,11 +166,12 @@ module.exports = grammar({
       optional($._semicolon),
     )),
 
-    enum_body: $ => seq(
+    enum_body: $ => choice(seq(
       '{',
       // TODO: self type
       optional($._enum_block),
-      '}'
+      '}'),
+      seq(':', $._indent, optional($._enum_block), $._outdent)
     ),
 
     enum_case_definitions: $ => seq(
@@ -263,12 +266,14 @@ module.exports = grammar({
 
     context_bound: $ => seq(':', field('type', $._type)),
 
-    template_body: $ => seq(
+    template_body: $ => choice(seq(
       '{',
       optional($.self_type),
       optional($._block),
       '}'
-    ),
+    ), seq(':', $._indent,
+      optional($.self_type),
+      optional($._block), $._outdent)),
 
     self_type: $ => prec(4, seq(
       $.identifier, optional($._self_type_ascription), '=>'
@@ -780,7 +785,7 @@ module.exports = grammar({
     ),
 
     // TODO: Include operators.
-    _plainid: $ => /[a-zA-Z_]\w*/,
+    _plainid: $ => /[a-zA-Z_\$]\w*/,
     _backquoted_id: $ => /`[^\n`]+`/,
     identifier: $ => choice($._plainid, $._backquoted_id),
     wildcard: $ => '_',
@@ -925,6 +930,13 @@ module.exports = grammar({
       'while',
       field('condition', $.parenthesized_expression)
     )),
+    do_while_expression2: $ => prec.right(seq(
+      'do',
+      field('body', $.expression),
+      'while',
+      field('condition', $.parenthesized_expression)
+    )),
+
 
     for_expression: $ => prec.right(seq(
       'for',

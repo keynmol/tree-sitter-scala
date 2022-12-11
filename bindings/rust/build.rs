@@ -5,7 +5,9 @@ fn main() {
     c_config
         .flag_if_supported("-Wno-unused-parameter")
         .flag_if_supported("-Wno-unused-but-set-variable")
-        .flag_if_supported("-Wno-trigraphs");
+        .flag_if_supported("-Wno-trigraphs")
+        .flag_if_supported("-Werror")
+        .flag_if_supported("-W!all"); // -Wextra -Wpedantic -Wvla -Wconversion
     let parser_path = src_dir.join("parser.c");
     let scanner_path = src_dir.join("scanner.c");
     c_config.file(&parser_path);
